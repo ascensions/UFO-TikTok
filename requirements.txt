@@ -1,0 +1,6 @@
+selenium
+requests
+beautifulsoup4
+gtts
+#ffmpeg on system
+#chrome on system
