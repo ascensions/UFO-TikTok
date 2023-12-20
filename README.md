@@ -7,7 +7,7 @@ Install:
   Create and activate python virtual environment
   Install requirements and dependancies - requirements.txt need to be updated/streamlined; also install Chrome, Pillow, Selenium, ffmpeg, Undetected chrome? as system package.
   Setup for use case: 
-    Put needed files where they need to go - tiktok cookies.json, youtube oauth client secrets credentials, songs.txt, font, chromedriver
+    Put needed files where they need to go - tiktok cookies.json, youtube oauth client secrets credentials, songs.txt, font, chromedriver, adblock extension for youtube crosspost...
     Change any filenames/directories as needed, any references in scripts, actual file contents in the case of songs.txt...
 
 Run:
