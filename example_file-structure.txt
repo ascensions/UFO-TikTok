@@ -1,0 +1,7 @@
+~/Desktop/ufo_project$ ls
+adblock.crx            log_20231210_182759.txt  run_all.sh   ufo_env
+chromedriver-linux64   main.py                  script.log   uploadYt.py
+cookies.json           sightings    VCR_OSD_MONO.ttf
+credentials            render.py                songs.txt
+imagePrep.py           renders                  
+last_uploaded_url.txt  requirements.txt         token.json
