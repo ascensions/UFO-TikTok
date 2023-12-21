@@ -10,8 +10,8 @@ Install:
     Put needed files where they need to go - tiktok cookies.json, youtube oauth client secrets credentials, songs.txt, font, chromedriver, adblock extension for youtube crosspost...
     Change any filenames/directories as needed, any references in scripts, actual file contents in the case of songs.txt...
 
-Run:
-  python3 main.py - will use Selenium and fetch the latest 50,000 UFO Reports from https://nuforc.org/subndx/?id=all and download the reports - videos, images, and report details, generating a folder 'sightings' and on script completion will generate a log file for the sighting IDs captured on run.
+Run:50,000
+  python3 main.py - will use Selenium and fetch the latest by default 20 pages of 100 UFO Reports (configurable; need to add rate limit waiting past ~300 pages?...) from https://nuforc.org/subndx/?id=all and download the reports - videos, images, and report details, generating a folder 'sightings' and on script completion will generate a log file for the sighting IDs captured on run.
   python3 render.py - will use FFMPEG and GTTS to generate 9:16 videos in the 'renders' folder for all sightings from the last log file generated, adding TTS to each video.
   python3 uploadTk.py - will use Selenium to post all the videos in the 'renders' folder that correspond with the last log file generated, and then cross post to Youtube using helper script uploadYt.py, before waiting to upload again.
 OR
