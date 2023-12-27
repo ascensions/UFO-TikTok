@@ -1,22 +1,39 @@
-Project intended to automate pushing the latest NUFORC reports to TikTok and Youtube: https://www.tiktok.com/@ufo.sightings.daily
+UFO Sightings Automation Project
+Description
+This project automates the process of pushing the latest UFO reports from NUFORC to TikTok and YouTube. It fetches reports, processes them, and uploads them to social platforms. This project is currently under development and is tailored to my server setup, so please use it with caution.
 
-Currently in development - many tweaks and optimizations required as it is only really been setup on my own server lol - use at your own discretion.
+Installation
+Prerequisites
+Python 3
+Google Chrome (for Selenium WebDriver)
+FFMPEG (for video processing)
+GTTS (for text-to-speech)
+Selenium WebDriver
+Undetected ChromeDriver (optional, for enhanced scraping)
+Adblock extension (for YouTube crossposting)
+A suitable font file
+songs.txt for background music selection
+TikTok cookies (cookies.json)
+YouTube OAuth client secrets credentials
+Steps
+Clone the Repository: Download the files from the GitHub repository to your local machine.
+Virtual Environment: Create and activate a Python virtual environment in the project directory.
+Install Dependencies: Install all required Python packages listed in requirements.txt. Update requirements.txt as needed. Also, ensure system-level dependencies (Chrome, FFMPEG, etc.) are installed.
+Setup Configuration: Place necessary files (cookies.json, YouTube credentials, songs.txt, font, ChromeDriver, adblock extension) in their respective locations. Update script references to these files as needed.
+Usage
+Running the Scripts
+Main Script: Run python3 main.py to fetch and download the latest UFO reports from NUFORC. This script generates a sightings folder with downloaded content and a log file for the sighting IDs.
+Render Script: Execute python3 render.py to process the sightings using FFMPEG and GTTS, creating videos in a 9:16 format in the renders folder.
+Upload Script: Use python3 uploadTk.py to upload processed videos to TikTok, followed by cross-posting to YouTube using uploadYt.py. The script waits before uploading new content.
+Alternatively, use the run_all.sh script, which sequentially executes the above scripts and can be set up as a cron job for automation.
 
-Install:
-  Download files
-  Create and activate python virtual environment
-  Install requirements and dependancies - requirements.txt need to be updated/streamlined; also install Chrome, Pillow, Selenium, ffmpeg, Undetected chrome? as system package.
-  Setup for use case: 
-    Put needed files where they need to go - tiktok cookies.json, youtube oauth client secrets credentials, songs.txt, font, chromedriver, adblock extension for youtube crosspost...
-    Change any filenames/directories as needed, any references in scripts, actual file contents in the case of songs.txt...
+Additional Features
+Slide Show Generation: A script is in development to create slideshows from sighting images, similar to the render.py script.
+Support and Donations
+If you find this project helpful and wish to support its development, consider donating:
 
-Run:50,000
-  python3 main.py - will use Selenium and fetch the latest by default 20 pages of 100 UFO Reports (configurable; need to add rate limit waiting past ~300 pages?...) from https://nuforc.org/subndx/?id=all and download the reports - videos, images, and report details, generating a folder 'sightings' and on script completion will generate a log file for the sighting IDs captured on run.
-  python3 render.py - will use FFMPEG and GTTS to generate 9:16 videos in the 'renders' folder for all sightings from the last log file generated, adding TTS to each video.
-  python3 uploadTk.py - will use Selenium to post all the videos in the 'renders' folder that correspond with the last log file generated, and then cross post to Youtube using helper script uploadYt.py, before waiting to upload again.
-OR
-  use the run_all.sh, which should run each script before moving to the next, and can be setup as a cron job.
+Bitcoin (BTC): 3Q483nJRB2aZ8MjubYzxDXqFr3yQ1MvmNe
 
-Currently also working on a script to implement creating slideshows not too dissimilar from the render.py script, to generate media from the sighting images.
+Disclaimer
+This project is in active development and is primarily configured for my server setup. It might require adjustments for different environments. Use it at your own discretion.
 
-If you thought any of this was useful, please consider donating (BTC): 3Q483nJRB2aZ8MjubYzxDXqFr3yQ1MvmNe
