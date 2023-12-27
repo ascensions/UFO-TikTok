@@ -133,21 +133,19 @@ def wait_for_download_complete(download_path, file_pattern):
 # Usage in your function
 def download_video(video_url, download_service_url):
     print("Downloading video from ssstik.io...")
+#    options.add_argument('--headless=new')
+    options.add_argument("--no-sandbox");
+    options.add_argument("--disable-dev-shm-usage");
+    options.add_argument('--enable-logging')
+    options.add_argument('--v=1')
 
-    # Get the path to your adblock extension
-    extension_path = os.path.join(os.getcwd(), 'adblock.crx')
-
-    # Get the download path and Chrome options from your setup function
-    download_path, options = setup_download_path()
-
-    # Add the adblocker extension to ChromeOptions
-    options.add_extension(extension_path)
-
-    # Path to your ChromeDriver executable
-    chromedriver_path = os.path.join(os.getcwd(), "chromedriver-linux64", "chromedriver")
+    chromedriver_path = os.path.join(os.path.expanduser('~/Desktop/ufo_project'), 'chromedriver-linux64', 'chromedriver')
     service = Service(chromedriver_path)
-
-    # Initialize the Chrome driver with the configured options
+    driver.set_page_load_timeout(25)
+    driver.set_window_size(1920, 1080)
+    extension_path = os.path.join(os.getcwd(), 'adblock.crx')
+    download_path, options = setup_download_path()
+    options.add_extension(extension_path)
     driver = webdriver.Chrome(service=service, options=options)
 
     try:
@@ -207,11 +205,17 @@ def click_off_to_the_side(driver):
 def get_latest_video_url(tiktok_url):
     print("Initializing the web driver...")
     options = webdriver.ChromeOptions()
-#    options.add_argument('--headless=new')
+    options.add_argument('--headless=new')
+    options.add_argument("--no-sandbox");
+    options.add_argument("--disable-dev-shm-usage");
+    options.add_argument('--enable-logging')
+    options.add_argument('--v=1')
 
-    chromedriver_path = os.path.join(os.getcwd(), "chromedriver-linux64", "chromedriver")
+    chromedriver_path = os.path.join(os.path.expanduser('~/Desktop/ufo_project'), 'chromedriver-linux64', 'chromedriver')
     service = Service(chromedriver_path)
     driver = webdriver.Chrome(service=service, options=options)
+    driver.set_page_load_timeout(25)
+    driver.set_window_size(1920, 1080)
     driver.get('https://www.tiktok.com/')
     time.sleep(3)
     WebDriverWait(driver, 10).until(lambda d: 'tiktok.com' in d.current_url)
@@ -232,6 +236,7 @@ def get_latest_video_url(tiktok_url):
     print("No matching video URL found.")
     driver.quit()
     return None
+
 def get_last_uploaded_url(file_path):
     """Read the last uploaded URL from a file."""
     if os.path.exists(file_path):
@@ -250,8 +255,6 @@ def clean_up_temp_dir(temp_dir):
 
 def youtube_main_upload():
     print("Crossposting to Youtube and Reels From Tiktok...")
-    print("Waiting one minute for new video to be visible.")
-    time.sleep(60)
     tiktok_url = "https://www.tiktok.com/@ufo.sightings.daily"
     download_service_url = "https://ssstik.io/en"
     print(f"Accessing TikTok URL: {tiktok_url}")
