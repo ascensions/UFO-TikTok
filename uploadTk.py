@@ -22,7 +22,11 @@ def init_driver():
     options.add_argument("--log-level=3")
     options.add_argument('disable-infobars')
     options.add_argument('--headless=new')
-    
+    options.add_argument("--no-sandbox");
+    options.add_argument("--disable-dev-shm-usage");
+    options.add_argument('--enable-logging')
+    options.add_argument('--v=1')
+
     # Path to your chromedriver executable
     chromedriver_path = os.path.join(os.path.expanduser('~/Desktop/ufo_project'), 'chromedriver-linux64', 'chromedriver')
     service = Service(chromedriver_path)
@@ -337,7 +341,10 @@ def main():
             upload_success = upload_to_tiktok(video, "SKYWATCHER REPORT", caption_text, tiktok_cookies)
             next_upload_time = current_time + timedelta(hours=3)
             if upload_success:
-                youtube_main_upload()
+                try:
+                    youtube_main_upload()
+                except Exception as e:
+                    print(f"An error occurred when trying to crosspost: {e}")
             else:
                 print("Skipping Youtube Upload.")
 
