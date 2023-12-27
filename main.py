@@ -28,6 +28,10 @@ def init_driver():
     print("Initializing the web driver...")
     options = webdriver.ChromeOptions()
     options.add_argument('--headless=new')
+    options.add_argument("--no-sandbox");
+    options.add_argument("--disable-dev-shm-usage");
+    options.add_argument('--enable-logging')
+    options.add_argument('--v=1')
 
     # Specify the correct path to your chromedriver executable
     chromedriver_path = os.path.join(os.getcwd(), "chromedriver-linux64", "chromedriver")
@@ -36,6 +40,9 @@ def init_driver():
     options.set_capability("goog:loggingPrefs", {"performance": "ALL"})
 
     driver = webdriver.Chrome(service=service, options=options)
+    driver.set_page_load_timeout(25)
+    driver.set_window_size(1920, 1080)
+
     return driver
 def sort_table_by_occurred(driver):
     print("Loading main page...")
